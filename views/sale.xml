@@ -1,0 +1,25 @@
+<openerp>
+    <data>
+        <record id="view_order_stock_view" model="ir.ui.view">
+            <field name="name">Sale Stock View</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='order_line']/form//field[@name='product_uom']" position="after">
+                       <field name="immediately_usable_qty"
+                       context="{'warehouse_id':parent.warehouse_id, 'uom':False, 'company_id': parent.company_id}"
+                       groups="base.group_user"
+			/>
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="after">
+                       <field name="immediately_usable_qty"
+                       context="{'warehouse_id':parent.warehouse_id, 'uom':False, 'company_id': parent.company_id}"
+                       groups="base.group_user"
+			/>
+                    </xpath>
+                </data>
+           </field>
+        </record>
+    </data>
+</openerp>
